@@ -16,6 +16,7 @@ html, body {
   margin: auto;
   border: 1px solid black;
   box-shadow: 3px 3px 20px;
+  width: 270px;
 }
 
 #break-container, #session-container, #timer-container, #controls-container {
@@ -93,7 +94,6 @@ html, body {
 #break-length, #session-length {
   text-align: right;
   display: inline-block;
-  width: 23px;
 }
 
 #time-left {
