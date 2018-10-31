@@ -52,7 +52,7 @@ class Controls extends Component {
     return (
       <div id="controls-container">
         <div className="buttons-container">
-          <button id="start_stop" onClick={this.props.startStop}>Start Stop</button>
+          <button id="start_stop" onClick={this.props.startStop}>{this.props.buttonText}</button>
           <button id="reset" onClick={this.props.reset}>Reset</button>
         </div>
       </div>
@@ -60,27 +60,14 @@ class Controls extends Component {
   }
 }
 
-/*
-class Audio extends Component {
-  render() {
-    return (
-      <div>
-        <audio 
-          id="beep"
-          src="http://www.peter-weinberg.com/files/1014/8073/6015/BeepSound.wav" />
-      </div>
-    )
-  }
-}
-*/
-
 class App extends Component {
   state = {
     breakLength: 300,
     sessionLength: 1500,
     timeLeft: 1500,
     phase: "Session",
-    running: false
+    running: false,
+    startStop: "Start"
   }
 
   initialState = this.state;
@@ -168,12 +155,14 @@ class App extends Component {
       }, 1000);
       
       this.setState({
-        running: true
+        running: true,
+        startStop: "Stop"
       })
     } else {
       clearInterval(this.interval);
       this.setState({
-        running: false
+        running: false,
+        startStop: "Start"
       })
     }
   }
@@ -209,7 +198,8 @@ class App extends Component {
           phase={this.state.phase} />
         <Controls
           startStop={() => this.startStop()}
-          reset={() => this.reset()} />
+          reset={() => this.reset()}
+          buttonText={this.state.startStop} />
         <audio 
           id="beep"
           preload="auto"
