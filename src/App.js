@@ -1,63 +1,59 @@
 import React, { Component } from 'react';
 import './App.css';
 
-class Settings extends Component {
-  render() {
-    return (
-      <div>
-        <div id="break-container">
-          <div id="break-label" className="text">Break:</div>
-          <div className="text">
-            <span id="break-length">{this.props.breakLength}</span>
-            <span> Minutes</span>
-          </div>
-          <div className="buttons-container">
-            <button id="break-increment" onClick={this.props.incrementBreak}>+</button>
-            <button id="break-decrement" onClick={this.props.decrementBreak}>-</button>
-          </div>
-        </div>
-        
-        <div id="session-container">
-          <div id="session-label" className="text">Session:</div>
-          <div className="text">
-            <span id="session-length">{this.props.sessionLength}</span>
-            <span> Minutes</span>
-          </div>
-          <div className="buttons-container">
-            <button id="session-increment" onClick={this.props.incrementSession}>+</button>
-            <button id="session-decrement" onClick={this.props.decrementSession}>-</button>
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
+const Settings = (props) => {
+  return (
+    <div>
 
-class Timer extends Component {
-  render() {
-    return (
-      <div id="timer-container">
+      <div id="break-container">
+        <div id="break-label" className="text">Break:</div>
         <div className="text">
-          <span id="time-left">{this.props.timeLeft}</span>
-          <span> left in </span>
-          <span id="timer-label">{this.props.phase}</span>
+          <span id="break-length">{props.breakLength}</span>
+          <span> Minutes</span>
+        </div>
+        <div className="buttons-container">
+          <button id="break-increment" onClick={props.incrementBreak}>+</button>
+          <button id="break-decrement" onClick={props.decrementBreak}>-</button>
         </div>
       </div>
-    )
-  }
+      
+      <div id="session-container">
+        <div id="session-label" className="text">Session:</div>
+        <div className="text">
+          <span id="session-length">{props.sessionLength}</span>
+          <span> Minutes</span>
+        </div>
+        <div className="buttons-container">
+          <button id="session-increment" onClick={props.incrementSession}>+</button>
+          <button id="session-decrement" onClick={props.decrementSession}>-</button>
+        </div>
+      </div>
+
+    </div>
+  )
 }
 
-class Controls extends Component {
-  render() {
-    return (
-      <div id="controls-container">
-        <div className="buttons-container">
-          <button id="start_stop" onClick={this.props.startStop}>{this.props.buttonText}</button>
-          <button id="reset" onClick={this.props.reset}>Reset</button>
-        </div>
+const Timer = (props) => {
+  return (
+    <div id="timer-container">
+      <div className="text">
+        <span id="time-left">{props.timeLeft}</span>
+        <span> left in </span>
+        <span id="timer-label">{props.phase}</span>
       </div>
-    )
-  }
+    </div>
+  )
+}
+
+const Controls = (props) => {
+  return (
+    <div id="controls-container">
+      <div className="buttons-container">
+        <button id="start_stop" onClick={props.startStop}>{props.buttonText}</button>
+        <button id="reset" onClick={props.reset}>Reset</button>
+      </div>
+    </div>
+  )
 }
 
 class App extends Component {
@@ -179,7 +175,9 @@ class App extends Component {
     
     clearInterval(this.interval);
     audio.pause();
+
     audio.currentTime = 0;
+
     this.setState(this.initialState);
   }
 
