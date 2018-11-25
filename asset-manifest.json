@@ -1,14 +1,14 @@
 {
-  "main.css": "/fcc_frontend_pomodoro_clock/static/css/main.b43b898e.chunk.css",
-  "main.js": "/fcc_frontend_pomodoro_clock/static/js/main.7d0a96fc.chunk.js",
-  "main.js.map": "/fcc_frontend_pomodoro_clock/static/js/main.7d0a96fc.chunk.js.map",
+  "main.css": "/fcc_frontend_pomodoro_clock/static/css/main.027afd44.chunk.css",
+  "main.js": "/fcc_frontend_pomodoro_clock/static/js/main.92ad2157.chunk.js",
+  "main.js.map": "/fcc_frontend_pomodoro_clock/static/js/main.92ad2157.chunk.js.map",
   "static/js/1.37f90d57.chunk.js": "/fcc_frontend_pomodoro_clock/static/js/1.37f90d57.chunk.js",
   "static/js/1.37f90d57.chunk.js.map": "/fcc_frontend_pomodoro_clock/static/js/1.37f90d57.chunk.js.map",
   "runtime~main.js": "/fcc_frontend_pomodoro_clock/static/js/runtime~main.d0603e0e.js",
   "runtime~main.js.map": "/fcc_frontend_pomodoro_clock/static/js/runtime~main.d0603e0e.js.map",
   "static/media/App.css": "/fcc_frontend_pomodoro_clock/static/media/alarm clock.9d790a5b.jpg",
-  "static/css/main.b43b898e.chunk.css.map": "/fcc_frontend_pomodoro_clock/static/css/main.b43b898e.chunk.css.map",
+  "static/css/main.027afd44.chunk.css.map": "/fcc_frontend_pomodoro_clock/static/css/main.027afd44.chunk.css.map",
   "index.html": "/fcc_frontend_pomodoro_clock/index.html",
-  "precache-manifest.054ec222a12b07873ca068965cc4da56.js": "/fcc_frontend_pomodoro_clock/precache-manifest.054ec222a12b07873ca068965cc4da56.js",
+  "precache-manifest.d79af7ac467adc641aa38d673f368f46.js": "/fcc_frontend_pomodoro_clock/precache-manifest.d79af7ac467adc641aa38d673f368f46.js",
   "service-worker.js": "/fcc_frontend_pomodoro_clock/service-worker.js"
 }
