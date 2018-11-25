@@ -5,20 +5,6 @@ const Settings = (props) => {
   return (
     <div>
 
-      <div id="break-container">
-        <div id="break-label" className="text">Break:</div>
-        <div className="text">
-          <span id="break-length">{props.breakLength}</span>
-          <span>{props.breakLength > 1 ? " Minutes" : " Minute"}</span>
-        </div>
-        <div className="buttons-container">
-          <button id="break-increment-ten" onClick={props.incrementBreakTen}>&#43;5</button>
-          <button id="break-increment" onClick={props.incrementBreak}>&#43;</button>
-          <button id="break-decrement" onClick={props.decrementBreak}>&#8722;</button>
-          <button id="break-decrement-ten" onClick={props.decrementBreakTen}>&#8722;5</button>
-        </div>
-      </div>
-      
       <div id="session-container">
         <div id="session-label" className="text">Session:</div>
         <div className="text">
@@ -26,10 +12,24 @@ const Settings = (props) => {
           <span>{props.sessionLength > 1 ? " Minutes" : " Minute"}</span>
         </div>
         <div className="buttons-container">
-          <button id="session-increment-ten" onClick={props.incrementSessionTen}>&#43;5</button>
-          <button id="session-increment" onClick={props.incrementSession}>&#43;</button>
-          <button id="session-decrement" onClick={props.decrementSession}>&#8722;</button>
-          <button id="session-decrement-ten" onClick={props.decrementSessionTen}>&#8722;5</button>
+          <button className="button-session" id="session-increment-ten" onClick={props.incrementSessionTen}>&#43;5</button>
+          <button className="button-session" id="session-increment" onClick={props.incrementSession}>&#43;</button>
+          <button className="button-session" id="session-decrement" onClick={props.decrementSession}>&#8722;</button>
+          <button className="button-session" id="session-decrement-ten" onClick={props.decrementSessionTen}>&#8722;5</button>
+        </div>
+      </div>
+
+      <div id="break-container">
+        <div id="break-label" className="text">Break:</div>
+        <div className="text">
+          <span id="break-length">{props.breakLength}</span>
+          <span>{props.breakLength > 1 ? " Minutes" : " Minute"}</span>
+        </div>
+        <div className="buttons-container">
+          <button className="button-break" id="break-increment-ten" onClick={props.incrementBreakTen}>&#43;5</button>
+          <button className="button-break" id="break-increment" onClick={props.incrementBreak}>&#43;</button>
+          <button className="button-break" id="break-decrement" onClick={props.decrementBreak}>&#8722;</button>
+          <button className="button-break" id="break-decrement-ten" onClick={props.decrementBreakTen}>&#8722;5</button>
         </div>
       </div>
 
@@ -53,8 +53,23 @@ const Controls = (props) => {
   return (
     <div id="controls-container">
       <div className="buttons-container">
-        <button id="start_stop" onClick={props.startStop}>{props.buttonText}</button>
-        <button id="reset" onClick={props.reset}>Reset</button>
+        <button className="button-controls" id="start-stop" onClick={props.startStop}>{props.buttonText}</button>
+        <button className="button-controls" id="reset" onClick={props.reset}>Reset</button>
+      </div>
+    </div>
+  )
+}
+
+const Themes = (props) => {
+  return (
+    <div id="themes-container">
+      <div className="text">
+        <span>Theme:</span>
+      </div>
+      <div className="buttons-container">
+        <button id="red-theme" onClick={props.redTheme}>Red</button>
+        <button id="green-theme" onClick={props.greenTheme}>Green</button>
+        <button id="gray-theme" onClick={props.grayTheme}>Gray</button>
       </div>
     </div>
   )
@@ -176,6 +191,7 @@ class App extends Component {
 
   componentDidMount() {
     this.setBackground();
+    this.redTheme();
   }
 
   componentDidUpdate() {
@@ -220,34 +236,111 @@ class App extends Component {
     this.setBackground();
   }
 
+  redTheme() {
+    document.getElementById("pomodoro").classList.add("pomodoro-red");
+    document.getElementById("pomodoro").classList.remove("pomodoro-green");
+    document.getElementById("controls-container").classList.remove("controls-container-red");
+    document.getElementById("controls-container").classList.add("controls-container-green");
+    document.getElementById("start-stop").classList.remove("controls-container-button-red");
+    document.getElementById("start-stop").classList.add("controls-container-button-green");
+    document.getElementById("reset").classList.remove("controls-container-button-red");
+    document.getElementById("reset").classList.add("controls-container-button-green");
+
+    document.getElementById("session-container").style.background = "#ff9800";
+    document.getElementById("break-container").style.background = "#00bcd4";
+    document.getElementById("controls-container").style.background = "#8bc34a";
+    document.getElementById("themes-container").style.background = "#FDD835";
+    document.querySelectorAll(".button-session").forEach(e => e.style.background = "#f57c00");
+    document.querySelectorAll(".button-break").forEach(e => e.style.background = "#00bcd4");
+    document.querySelectorAll(".button-controls").forEach(e => {
+      e.style.background = "#7CB342";
+      e.style.border = "1px solid #33691E";
+    });
+    document.getElementById("pomodoro").style.background = "#FF7043";
+  }
+
+  greenTheme() {
+    document.getElementById("pomodoro").classList.remove("pomodoro-red");
+    document.getElementById("pomodoro").classList.add("pomodoro-green")
+    document.getElementById("controls-container").classList.add("controls-container-red");
+    document.getElementById("controls-container").classList.remove("controls-container-green")
+    document.getElementById("start-stop").classList.add("controls-container-button-red");
+    document.getElementById("start-stop").classList.remove("controls-container-button-green");
+    document.getElementById("reset").classList.add("controls-container-button-red");
+    document.getElementById("reset").classList.remove("controls-container-button-green");
+
+    document.getElementById("session-container").style.background = "#ff9800";
+    document.getElementById("break-container").style.background = "#00bcd4";
+    document.getElementById("controls-container").style.background = "#FF7043";
+    document.getElementById("themes-container").style.background = "#FDD835";
+    document.querySelectorAll(".button-session").forEach(e => e.style.background = "#f57c00");
+    document.querySelectorAll(".button-break").forEach(e => e.style.background = "#00bcd4");
+    document.querySelectorAll(".button-controls").forEach(e => {
+      e.style.background = "#ff5722";
+      e.style.border = "1px solid #BF360C";
+    });
+    document.getElementById("pomodoro").style.background = "#8bc34a";
+  }
+
+  grayTheme() {
+    document.getElementById("pomodoro").classList.remove("pomodoro-red");
+    document.getElementById("pomodoro").classList.remove("pomodoro-green");
+    document.getElementById("controls-container").classList.remove("controls-container-red");
+    document.getElementById("controls-container").classList.remove("controls-container-green");
+    document.getElementById("start-stop").classList.remove("controls-container-button-red");
+    document.getElementById("start-stop").classList.remove("controls-container-button-green");
+    document.getElementById("reset").classList.remove("controls-container-button-red");
+    document.getElementById("reset").classList.remove("controls-container-button-green");
+    
+    document.getElementById("session-container").style.background = "#BDBDBD";
+    document.getElementById("break-container").style.background = "#BDBDBD";
+    document.getElementById("controls-container").style.background = "#BDBDBD";
+    document.getElementById("themes-container").style.background = "#BDBDBD";
+    document.querySelectorAll(".button-session").forEach(e => e.style.background = "#E0E0E0");
+    document.querySelectorAll(".button-break").forEach(e => e.style.background = "#E0E0E0");
+    document.querySelectorAll(".button-controls").forEach(e => {
+      e.style.background = "#E0E0E0";
+      e.style.border = "1px solid #33691E";
+    });
+    document.getElementById("pomodoro").style.background = "#9E9E9E";
+  }
+
   render() {
     return (
       <div id="App">
         <div id="background" />
         <div id="main">
-          <Settings
-            breakLength={this.state.breakLength/60} 
-            sessionLength={this.state.sessionLength/60} 
-            incrementSession={() => this.incrementSession(1)}
-            incrementSessionTen={() => this.incrementSession(5)}
-            decrementSession={() => this.decrementSession(1)}
-            decrementSessionTen={() => this.decrementSession(5)}
-            incrementBreak={() => this.incrementBreak(1)}
-            incrementBreakTen={() => this.incrementBreak(5)}
-            decrementBreak={() => this.decrementBreak(1)}
-            decrementBreakTen={() => this.decrementBreak(5)} />
-          <Timer
-            timeLeft={this.timeLeft()}
-            phase={this.state.phase} />
-          <Controls
-            startStop={() => this.startStop()}
-            reset={() => this.reset()}
-            buttonText={this.state.startStop} />
-          <audio 
-            id="beep"
-            preload="auto"
-            src="https://goo.gl/65cBl1">
-          </audio>
+          <h1>Pomodoro Clock</h1>
+          <div id="pomodoro">
+            <Settings
+              breakLength={this.state.breakLength/60} 
+              sessionLength={this.state.sessionLength/60} 
+              incrementSession={() => this.incrementSession(1)}
+              incrementSessionTen={() => this.incrementSession(5)}
+              decrementSession={() => this.decrementSession(1)}
+              decrementSessionTen={() => this.decrementSession(5)}
+              incrementBreak={() => this.incrementBreak(1)}
+              incrementBreakTen={() => this.incrementBreak(5)}
+              decrementBreak={() => this.decrementBreak(1)}
+              decrementBreakTen={() => this.decrementBreak(5)} />
+            <Timer
+              timeLeft={this.timeLeft()}
+              phase={this.state.phase} />
+            <Controls
+              startStop={() => this.startStop()}
+              reset={() => this.reset()}
+              buttonText={this.state.startStop} />
+              <audio 
+                id="beep"
+                preload="auto"
+                src="https://goo.gl/65cBl1">
+              </audio>
+            <Themes 
+              redTheme={() => this.redTheme()}
+              greenTheme={() => this.greenTheme()}
+              grayTheme={() => this.grayTheme()}
+            />
+          </div>
         </div>
       </div>
     )
