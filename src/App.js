@@ -9,11 +9,13 @@ const Settings = (props) => {
         <div id="break-label" className="text">Break:</div>
         <div className="text">
           <span id="break-length">{props.breakLength}</span>
-          <span> Minutes</span>
+          <span>{props.breakLength > 1 ? " Minutes" : " Minute"}</span>
         </div>
         <div className="buttons-container">
-          <button id="break-increment" onClick={props.incrementBreak}>+</button>
-          <button id="break-decrement" onClick={props.decrementBreak}>-</button>
+          <button id="break-increment-ten" onClick={props.incrementBreakTen}>&#43;5</button>
+          <button id="break-increment" onClick={props.incrementBreak}>&#43;</button>
+          <button id="break-decrement" onClick={props.decrementBreak}>&#8722;</button>
+          <button id="break-decrement-ten" onClick={props.decrementBreakTen}>&#8722;5</button>
         </div>
       </div>
       
@@ -21,11 +23,13 @@ const Settings = (props) => {
         <div id="session-label" className="text">Session:</div>
         <div className="text">
           <span id="session-length">{props.sessionLength}</span>
-          <span> Minutes</span>
+          <span>{props.sessionLength > 1 ? " Minutes" : " Minute"}</span>
         </div>
         <div className="buttons-container">
-          <button id="session-increment" onClick={props.incrementSession}>+</button>
-          <button id="session-decrement" onClick={props.decrementSession}>-</button>
+          <button id="session-increment-ten" onClick={props.incrementSessionTen}>&#43;5</button>
+          <button id="session-increment" onClick={props.incrementSession}>&#43;</button>
+          <button id="session-decrement" onClick={props.decrementSession}>&#8722;</button>
+          <button id="session-decrement-ten" onClick={props.decrementSessionTen}>&#8722;5</button>
         </div>
       </div>
 
@@ -72,11 +76,11 @@ class App extends Component {
     return `${String(Math.floor(e/60)).padStart(2, "0")}:${String(e%60).padStart(2, "0")}`;
   }
 
-  incrementBreak() {
+  incrementBreak(factor) {
     let breakLength = this.state.breakLength;
     
-    if (breakLength < 3541) {
-      breakLength += 60;
+    if (breakLength < 2941 + (600 - (60 * factor))) {
+      breakLength += 60 * factor;
       
       this.setState({
         breakLength: breakLength,
@@ -84,11 +88,11 @@ class App extends Component {
     }
   }
 
-  incrementSession() {
+  incrementSession(factor) {
     let sessionLength = this.state.sessionLength;
     
-    if (sessionLength < 3541) {
-      sessionLength += 60;
+    if (sessionLength < 2941 + (600 - (60 * factor))) {
+      sessionLength += 60 * factor;
       
       this.setState({
         sessionLength: sessionLength,
@@ -97,11 +101,11 @@ class App extends Component {
     }
   }
 
-  decrementBreak() {
+  decrementBreak(factor) {
     let breakLength = this.state.breakLength;
     
-    if (breakLength > 60) {
-      breakLength -= 60;
+    if (breakLength > (60 * factor)) {
+      breakLength -= 60 * factor;
       
       this.setState({
         breakLength: breakLength
@@ -109,11 +113,11 @@ class App extends Component {
     }
   }
 
-  decrementSession() {
+  decrementSession(factor) {
     let sessionLength = this.state.sessionLength;
     
-    if (sessionLength > 60) {
-      sessionLength -= 60;
+    if (sessionLength > (60 * factor)) {
+      sessionLength -= 60 * factor;
       
       this.setState({
         sessionLength: sessionLength,
@@ -138,8 +142,44 @@ class App extends Component {
         })
       }
     }
-    
+
     return this.convertTime(this.state.timeLeft);
+  }
+
+  setBackground() {
+    if (this.state.running === false) {
+      if (this.state.phase === "Session") {
+        document.getElementById("timer-container").classList.remove("timer-container-break")
+        document.getElementById("timer-container").classList.remove("timer-container-session");
+        document.getElementById("timer-container").classList.remove("timer-container-break-stop");
+        document.getElementById("timer-container").classList.add("timer-container-session-stop")
+      } else if (this.state.phase === "Break") {
+        document.getElementById("timer-container").classList.remove("timer-container-break")
+        document.getElementById("timer-container").classList.remove("timer-container-session");
+        document.getElementById("timer-container").classList.add("timer-container-break-stop");
+        document.getElementById("timer-container").classList.remove("timer-container-session-stop")
+      }
+    } else {
+      if (this.state.phase === "Session") {
+        document.getElementById("timer-container").classList.remove("timer-container-break")
+        document.getElementById("timer-container").classList.add("timer-container-session");
+        document.getElementById("timer-container").classList.remove("timer-container-break-stop");
+        document.getElementById("timer-container").classList.remove("timer-container-session-stop")
+      } else if (this.state.phase === "Break") {
+        document.getElementById("timer-container").classList.add("timer-container-break")
+        document.getElementById("timer-container").classList.remove("timer-container-session");
+        document.getElementById("timer-container").classList.remove("timer-container-break-stop");
+        document.getElementById("timer-container").classList.remove("timer-container-session-stop")
+      }
+    }
+  }
+
+  componentDidMount() {
+    this.setBackground();
+  }
+
+  componentDidUpdate() {
+    this.setBackground();
   }
 
   startStop() {
@@ -148,8 +188,8 @@ class App extends Component {
         this.setState({
           timeLeft: this.state.timeLeft - 1
         });
-      }, 1000);
-      
+      }, 10);
+
       this.setState({
         running: true,
         startStop: "Stop"
@@ -175,34 +215,40 @@ class App extends Component {
     
     clearInterval(this.interval);
     audio.pause();
-
     audio.currentTime = 0;
-
     this.setState(this.initialState);
+    this.setBackground();
   }
 
   render() {
     return (
-      <div id="main">
-        <Settings
-          breakLength={this.state.breakLength/60} 
-          sessionLength={this.state.sessionLength/60} 
-          incrementSession={() => this.incrementSession()}
-          decrementSession={() => this.decrementSession()}
-          incrementBreak={() => this.incrementBreak()}
-          decrementBreak={() => this.decrementBreak()} />
-        <Timer
-          timeLeft={this.timeLeft()}
-          phase={this.state.phase} />
-        <Controls
-          startStop={() => this.startStop()}
-          reset={() => this.reset()}
-          buttonText={this.state.startStop} />
-        <audio 
-          id="beep"
-          preload="auto"
-          src="https://goo.gl/65cBl1">
-        </audio>
+      <div id="App">
+        <div id="background" />
+        <div id="main">
+          <Settings
+            breakLength={this.state.breakLength/60} 
+            sessionLength={this.state.sessionLength/60} 
+            incrementSession={() => this.incrementSession(1)}
+            incrementSessionTen={() => this.incrementSession(5)}
+            decrementSession={() => this.decrementSession(1)}
+            decrementSessionTen={() => this.decrementSession(5)}
+            incrementBreak={() => this.incrementBreak(1)}
+            incrementBreakTen={() => this.incrementBreak(5)}
+            decrementBreak={() => this.decrementBreak(1)}
+            decrementBreakTen={() => this.decrementBreak(5)} />
+          <Timer
+            timeLeft={this.timeLeft()}
+            phase={this.state.phase} />
+          <Controls
+            startStop={() => this.startStop()}
+            reset={() => this.reset()}
+            buttonText={this.state.startStop} />
+          <audio 
+            id="beep"
+            preload="auto"
+            src="https://goo.gl/65cBl1">
+          </audio>
+        </div>
       </div>
     )
   }

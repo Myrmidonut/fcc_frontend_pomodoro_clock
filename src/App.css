@@ -1,18 +1,30 @@
-html, body {
+html, body, #root {
   margin: 0;
   height: 100%;
   background-color: #293133;
   font-family: "Lato", sans-serif;
 }
 
-#root {
+#App {
   height: 100%;
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#background {
+  background-image: url("./alarm clock.jpg");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  filter: blur(5px);
 }
 
 #main {
-  background: lightgray;
+  position: absolute;
+  xbackground: #8bc34a;
+  background: #FF7043;
   margin: auto;
   border: 1px solid black;
   box-shadow: 3px 3px 20px;
@@ -28,15 +40,55 @@ html, body {
   justify-content: space-between;
   font-family: "Lato", sans-serif;
   font-size: 20px;
+  border-radius: 10px;
 }
 
-#break-container, #session-container {
-  padding-bottom: 20px;
+.timer-container-break {
+  background: repeating-linear-gradient(
+    45deg,
+    #00bcd4,
+    #00bcd4 10px,
+    #006064 10px,
+    #006064 20px
+  );
 }
 
-#controls-container {
-  padding-top: 20px;
-  padding-bottom: 20px;
+.timer-container-session {
+  background: repeating-linear-gradient(
+    45deg,
+    #ff9800,
+    #ff9800 10px,
+    #E65100 10px,
+    #E65100 20px
+  );
+}
+
+.timer-container-break-stop {
+  background: repeating-linear-gradient(
+    45deg,
+    #00bcd4,
+    #00bcd4 10px,
+    white 10px,
+    white 20px
+  );
+}
+
+.timer-container-session-stop {
+  background: repeating-linear-gradient(
+    45deg,
+    #ff9800,
+    #ff9800 10px,
+    white 10px,
+    white 20px
+  );
+}
+
+#break-container {
+  background: #00bcd4;
+}
+
+#session-container {
+  background: #ff9800;
 }
 
 .buttons-container {
@@ -46,12 +98,21 @@ html, body {
 }
 
 #break-container button, #session-container button {
-  font-size: 25px;
-  width: 40px;
-  height: 40px;
+  font-size: 20px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   border: 1px solid gray;
-  box-shadow: 1px 1px 1px gray;
+}
+
+#break-container button {
+  background: #00acc1;
+  border: 1px solid #006064;
+}
+
+#session-container button {
+  border: 1px solid #E65100;
+  background: #f57c00;
 }
 
 #break-container button:hover, #session-container button:hover {
@@ -71,13 +132,22 @@ html, body {
   margin: 10px;
 }
 
+#controls-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  xbackground: #FF7043;
+  background: #8bc34a;
+}
+
 #controls-container button {
   width: 80px;
   height: 35px;
   font-family: "Lato", sans-serif;
   font-size: 20px;
-  border: 1px solid gray;
-  box-shadow: 1px 1px 1px gray;
+  xborder: 1px solid #BF360C;
+  xbackground: #ff5722;
+  border: 1px solid #33691E;
+  background: #7CB342;
 }
 
 #controls-container button:hover {
