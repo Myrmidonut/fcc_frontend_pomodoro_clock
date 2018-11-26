@@ -67,9 +67,9 @@ const Themes = (props) => {
         <span>Theme:</span>
       </div>
       <div className="buttons-container">
-        <button id="red-theme" onClick={props.redTheme}>Red</button>
-        <button id="green-theme" onClick={props.greenTheme}>Green</button>
-        <button id="gray-theme" onClick={props.grayTheme}>Gray</button>
+        <button id="red-theme" onClick={props.redTheme}></button>
+        <button id="green-theme" onClick={props.greenTheme}></button>
+        <button id="gray-theme" onClick={props.grayTheme}></button>
       </div>
     </div>
   )
@@ -243,8 +243,10 @@ class App extends Component {
     document.getElementById("controls-container").classList.add("controls-container-green");
     document.getElementById("start-stop").classList.remove("controls-container-button-red");
     document.getElementById("start-stop").classList.add("controls-container-button-green");
+    document.getElementById("start-stop").classList.remove("controls-container-button-gray");
     document.getElementById("reset").classList.remove("controls-container-button-red");
     document.getElementById("reset").classList.add("controls-container-button-green");
+    document.getElementById("reset").classList.remove("controls-container-button-gray");
 
     document.getElementById("session-container").style.background = "#ff9800";
     document.getElementById("break-container").style.background = "#00bcd4";
@@ -252,10 +254,7 @@ class App extends Component {
     document.getElementById("themes-container").style.background = "#FDD835";
     document.querySelectorAll(".button-session").forEach(e => e.style.background = "#f57c00");
     document.querySelectorAll(".button-break").forEach(e => e.style.background = "#00bcd4");
-    document.querySelectorAll(".button-controls").forEach(e => {
-      e.style.background = "#7CB342";
-      e.style.border = "1px solid #33691E";
-    });
+    document.querySelectorAll(".button-controls").forEach(e => e.style.background = "#7CB342");
     document.getElementById("pomodoro").style.background = "#FF7043";
   }
 
@@ -266,8 +265,10 @@ class App extends Component {
     document.getElementById("controls-container").classList.remove("controls-container-green")
     document.getElementById("start-stop").classList.add("controls-container-button-red");
     document.getElementById("start-stop").classList.remove("controls-container-button-green");
+    document.getElementById("start-stop").classList.remove("controls-container-button-gray");
     document.getElementById("reset").classList.add("controls-container-button-red");
     document.getElementById("reset").classList.remove("controls-container-button-green");
+    document.getElementById("reset").classList.remove("controls-container-button-gray");
 
     document.getElementById("session-container").style.background = "#ff9800";
     document.getElementById("break-container").style.background = "#00bcd4";
@@ -275,10 +276,7 @@ class App extends Component {
     document.getElementById("themes-container").style.background = "#FDD835";
     document.querySelectorAll(".button-session").forEach(e => e.style.background = "#f57c00");
     document.querySelectorAll(".button-break").forEach(e => e.style.background = "#00bcd4");
-    document.querySelectorAll(".button-controls").forEach(e => {
-      e.style.background = "#ff5722";
-      e.style.border = "1px solid #BF360C";
-    });
+    document.querySelectorAll(".button-controls").forEach(e => e.style.background = "#ff5722");
     document.getElementById("pomodoro").style.background = "#8bc34a";
   }
 
@@ -289,8 +287,10 @@ class App extends Component {
     document.getElementById("controls-container").classList.remove("controls-container-green");
     document.getElementById("start-stop").classList.remove("controls-container-button-red");
     document.getElementById("start-stop").classList.remove("controls-container-button-green");
+    document.getElementById("start-stop").classList.add("controls-container-button-gray");
     document.getElementById("reset").classList.remove("controls-container-button-red");
     document.getElementById("reset").classList.remove("controls-container-button-green");
+    document.getElementById("reset").classList.add("controls-container-button-gray");
     
     document.getElementById("session-container").style.background = "#BDBDBD";
     document.getElementById("break-container").style.background = "#BDBDBD";
@@ -298,10 +298,7 @@ class App extends Component {
     document.getElementById("themes-container").style.background = "#BDBDBD";
     document.querySelectorAll(".button-session").forEach(e => e.style.background = "#E0E0E0");
     document.querySelectorAll(".button-break").forEach(e => e.style.background = "#E0E0E0");
-    document.querySelectorAll(".button-controls").forEach(e => {
-      e.style.background = "#E0E0E0";
-      e.style.border = "1px solid #33691E";
-    });
+    document.querySelectorAll(".button-controls").forEach(e => e.style.background = "#E0E0E0");
     document.getElementById("pomodoro").style.background = "#9E9E9E";
   }
 
