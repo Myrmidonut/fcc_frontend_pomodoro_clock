@@ -14,7 +14,7 @@ html, body, #root {
 }
 
 #background {
-  background-image: url("./alarm clock 2.jpg");
+  background-image: url("./alarm clock.jpg");
   background-size: cover;
   height: 100%;
   width: 100%;
@@ -33,8 +33,7 @@ html, body, #root {
 h1 {
   text-align: center;
   font-size: 50px;
-  font-family: 'Poiret One', cursive;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: 'Prata', serif;
 }
 
 #pomodoro {
@@ -111,6 +110,18 @@ h1 {
 
 #session-container {
   background: #ff9800;
+}
+
+#themes-container .buttons-container {
+  justify-content: center;
+}
+
+#themes-container button {
+  border-radius: 0;
+  height: 31px;
+  width: 55px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .buttons-container {
