@@ -204,7 +204,7 @@ class App extends Component {
         this.setState({
           timeLeft: this.state.timeLeft - 1
         });
-      }, 10);
+      }, 1000);
 
       this.setState({
         running: true,
