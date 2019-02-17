@@ -1,10 +1,11 @@
 # Pomodoro Clock
 
 ## Introduction
-React
-Create-React-App
+The page shows a pomodoro clock with settings for break and work timers. When the work timer runs out the application plays a sound and switches to the break timer and keeps on repeating this process. Three color schemes are available.
 
-This project is part of freeCodeCamps Data Visualization certificate.
+The site is build in React utilizing Create-React-App.
+
+This project is part of freeCodeCamps Frontend certificate.
 
 ## Project Requirements
 * There is an element with id="break-label" that contains a string (e.g. "Break Length").
@@ -35,6 +36,10 @@ This project is part of freeCodeCamps Data Visualization certificate.
 * When a countdown reaches zero (NOTE: timer MUST reach 00:00), a sound indicating that time is up should play. This should utilize an HTML5 audio tag and have a corresponding id="beep".
 * The audio element with id="beep" must be 1 second or longer.
 * The audio element with id of beep must stop playing and be rewound to the beginning when the element with the id of reset is clicked.
+
+## Project Data
+Timer sound:  
+https://goo.gl/65cBl1
 
 ## Final Project
 https://myrmidonut.github.io/fcc_frontend_pomodoro_clock
