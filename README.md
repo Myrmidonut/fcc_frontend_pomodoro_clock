@@ -5,7 +5,7 @@ The page shows a pomodoro clock with settings for break and work timers. When th
 
 The site is build in React utilizing Create-React-App.
 
-This project is part of freeCodeCamps Frontend certificate.
+This project is part of freeCodeCamps Frontend Libraries certificate.
 
 ## Project Requirements
 * There is an element with id="break-label" that contains a string (e.g. "Break Length").
