@@ -7,6 +7,8 @@ The site is build in React utilizing Create-React-App.
 
 This project is part of freeCodeCamps Frontend Libraries certificate.
 
+***
+
 ## Project Requirements
 * There is an element with id="break-label" that contains a string (e.g. "Break Length").
 * There is an element with id="session-label" that contains a string (e.g. "Session Length").
@@ -37,12 +39,18 @@ This project is part of freeCodeCamps Frontend Libraries certificate.
 * The audio element with id="beep" must be 1 second or longer.
 * The audio element with id of beep must stop playing and be rewound to the beginning when the element with the id of reset is clicked.
 
+***
+
 ## Project Data
 Timer sound:  
 https://goo.gl/65cBl1
 
+***
+
 ## Final Project
 https://myrmidonut.github.io/fcc_frontend_pomodoro_clock
+
+***
 
 ## Preview Images
 ### Main Screen:
